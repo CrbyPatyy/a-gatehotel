@@ -22,7 +22,7 @@ export default function MeritPage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="relative pt-36 pb-24 overflow-hidden bg-[#0F1C33]">
+      <section className="relative pt-24 pb-24 overflow-hidden bg-[#0F1C33]">
         <Image src="/img/merit01.jpg" alt="" fill className="object-cover object-center opacity-20" sizes="100vw" />
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-[#0F1C33]" />
         <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">

@@ -66,7 +66,7 @@ export default function RoomsPage() {
   return (
     <>
       {/* ── Page hero ── */}
-      <section className="relative pt-36 pb-24 overflow-hidden bg-[#0F1C33]">
+      <section className="relative pt-24 pb-24 overflow-hidden bg-[#0F1C33]">
         <Image
           src="/img/room05_standardtwinjpg.jpg"
           alt="Rooms"

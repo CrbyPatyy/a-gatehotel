@@ -5,7 +5,7 @@ export default function PrivacyPage() {
   const { lang } = useLang();
   return (
     <>
-      <section className="pt-36 pb-16 bg-[#F9F7F4] border-b border-[#EAE6E1]">
+      <section className="pt-24 pb-16 bg-[#F9F7F4] border-b border-[#EAE6E1]">
         <div className="max-w-3xl mx-auto px-6 lg:px-8">
           <p className="eyebrow">{lang === "en" ? "Legal" : "規定"}</p>
           <h1 className="serif-display text-4xl md:text-5xl text-[#1B2A4A]">

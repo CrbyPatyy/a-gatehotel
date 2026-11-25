@@ -73,7 +73,7 @@ export default function FAQPage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="pt-36 pb-20 bg-[#F9F7F4] border-b border-[#EAE6E1]">
+      <section className="pt-24 pb-20 bg-[#F9F7F4] border-b border-[#EAE6E1]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <p className="eyebrow">{lang === "en" ? "Support" : "よくあるご質問"}</p>
           <h1 className="serif-display text-5xl md:text-6xl text-[#1B2A4A] mb-5">{t("faq.title")}</h1>

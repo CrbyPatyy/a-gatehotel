@@ -65,7 +65,7 @@ export default function PlanPage() {
   return (
     <>
       {/* ── Page hero ── */}
-      <section className="pt-36 pb-20 bg-[#0F1C33] relative overflow-hidden">
+      <section className="pt-24 pb-20 bg-[#0F1C33] relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[url('/img/featuren04.jpg')] bg-cover bg-center" />
         <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.p
