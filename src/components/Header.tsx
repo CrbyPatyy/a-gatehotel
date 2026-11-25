@@ -43,15 +43,18 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 h-[72px] flex items-center justify-between">
 
           {/* ── Logo ── */}
-          <Link href="/" className="flex items-center group">
+          <Link
+            href="/"
+            className={`flex items-center group transition-all duration-300 ${
+              transparent ? "" : "bg-[#1B2A4A] px-3 py-1.5"
+            }`}
+          >
             <Image
               src="/img/logo.png"
               alt="A-Gate Hotel Hakodate"
               width={110}
               height={36}
-              className={`object-contain transition-all duration-300 ${
-                transparent ? "brightness-0 invert" : "brightness-100"
-              }`}
+              className="object-contain"
               priority
             />
           </Link>
@@ -152,7 +155,7 @@ export default function Header() {
 
           <div className="pt-20 px-8 pb-8 flex flex-col h-full">
             {/* Logo inside drawer */}
-            <div className="mb-10">
+            <div className="mb-10 inline-block w-fit bg-[#1B2A4A] px-3 py-1.5">
               <Image src="/img/logo.png" alt="A-Gate" width={90} height={28} className="object-contain" />
             </div>
 
