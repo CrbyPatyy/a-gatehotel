@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useLang } from "@/contexts/LangContext";
-import { ChevronDown } from "lucide-react";
+import { Plus, Minus } from "lucide-react";
 
 type LangKey = "en" | "jp";
 
@@ -30,25 +30,24 @@ const faqs: Record<string, { q: Record<LangKey, string>; a: Record<LangKey, stri
 };
 
 const categories = [
-  { id: "checkin", labelEn: "Check-in & Out", labelJp: "チェックイン・アウト", icon: "🔑" },
-  { id: "policy", labelEn: "Hotel Policy", labelJp: "ホテルポリシー", icon: "📋" },
-  { id: "facilities", labelEn: "Facilities", labelJp: "施設について", icon: "♨️" },
-  { id: "payment", labelEn: "Payment & Cancellation", labelJp: "料金・キャンセル", icon: "💳" },
+  { id: "checkin",    labelEn: "Check-in & Out",        labelJp: "チェックイン・アウト", icon: "🔑" },
+  { id: "policy",     labelEn: "Hotel Policy",           labelJp: "ホテルポリシー",       icon: "📋" },
+  { id: "facilities", labelEn: "Facilities",             labelJp: "施設について",          icon: "♨️" },
+  { id: "payment",    labelEn: "Payment & Cancellation", labelJp: "料金・キャンセル",      icon: "💳" },
 ];
 
 function AccordionItem({ q, a, lang }: { q: Record<LangKey, string>; a: Record<LangKey, string>; lang: LangKey }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border-b border-[#E8E4DF] last:border-0">
+    <div className="border-b border-[#EAE6E1] last:border-0">
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between py-5 text-left gap-4 hover:text-[#D4973B] transition-colors group"
+        className="w-full flex items-center justify-between py-5 text-left gap-4 group"
       >
-        <span className="font-medium text-[#1B2A4A] group-hover:text-[#D4973B] transition-colors">{q[lang]}</span>
-        <ChevronDown
-          size={18}
-          className={`shrink-0 text-[#D4973B] transition-transform duration-300 ${open ? "rotate-180" : ""}`}
-        />
+        <span className="font-medium text-[#1B2A4A] text-[15px] group-hover:text-[#C9924A] transition-colors">{q[lang]}</span>
+        <span className="shrink-0 w-7 h-7 flex items-center justify-center border border-[#EAE6E1] text-[#C9924A] group-hover:border-[#C9924A] transition-colors">
+          {open ? <Minus size={14} /> : <Plus size={14} />}
+        </span>
       </button>
       <AnimatePresence initial={false}>
         {open && (
@@ -56,10 +55,10 @@ function AccordionItem({ q, a, lang }: { q: Record<LangKey, string>; a: Record<L
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <p className="pb-5 text-[#6B6B6B] leading-relaxed">{a[lang]}</p>
+            <p className="pb-6 text-[#6B6B6B] leading-relaxed text-sm">{a[lang]}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -73,27 +72,28 @@ export default function FAQPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-16 bg-[#F0EDE8]">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="text-[#D4973B] text-xs tracking-[0.3em] uppercase font-semibold mb-3">Support</p>
-          <h1 className="text-5xl font-bold text-[#1B2A4A] mb-4">{t("faq.title")}</h1>
+      {/* ── Hero ── */}
+      <section className="pt-36 pb-20 bg-[#F9F7F4] border-b border-[#EAE6E1]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <p className="overline">{lang === "en" ? "Support" : "よくあるご質問"}</p>
+          <h1 className="font-serif-display text-5xl md:text-6xl text-[#1B2A4A] mb-5">{t("faq.title")}</h1>
           <p className="text-[#6B6B6B] text-lg max-w-xl">{t("faq.sub")}</p>
         </div>
       </section>
 
-      <section className="py-20 px-6">
+      <section className="py-20 px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
-          {/* Category Tabs */}
-          <div className="flex flex-wrap gap-3 mb-12">
+
+          {/* Category tabs */}
+          <div className="flex flex-wrap gap-2 mb-12">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-medium transition-all ${
+                className={`flex items-center gap-2 px-5 py-2.5 text-sm font-medium transition-all border ${
                   activeCategory === cat.id
-                    ? "bg-[#1B2A4A] text-white shadow-md"
-                    : "bg-white text-[#1A1A1A] border border-[#E8E4DF] hover:border-[#1B2A4A]"
+                    ? "bg-[#1B2A4A] text-white border-[#1B2A4A]"
+                    : "bg-white text-[#1B2A4A] border-[#EAE6E1] hover:border-[#1B2A4A]"
                 }`}
               >
                 <span>{cat.icon}</span>
@@ -102,15 +102,15 @@ export default function FAQPage() {
             ))}
           </div>
 
-          {/* FAQ Items */}
+          {/* Accordion */}
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white rounded-2xl shadow-sm p-6 md:p-8"
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.25 }}
+              className="bg-white border border-[#EAE6E1] divide-y-0 px-6 md:px-10 py-2"
             >
               {faqs[activeCategory]?.map((item, i) => (
                 <AccordionItem key={i} q={item.q} a={item.a} lang={lang as LangKey} />
@@ -119,11 +119,11 @@ export default function FAQPage() {
           </AnimatePresence>
 
           {/* Contact CTA */}
-          <div className="mt-12 text-center">
-            <p className="text-[#6B6B6B] mb-3">{t("faq.contact")}</p>
+          <div className="mt-14 p-8 bg-[#F9F7F4] border border-[#EAE6E1] text-center">
+            <p className="text-[#6B6B6B] mb-3 text-sm">{t("faq.contact")}</p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-1 text-[#D4973B] font-semibold hover:underline"
+              className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.12em] uppercase px-6 py-3 bg-[#1B2A4A] text-white hover:bg-[#C9924A] transition-colors"
             >
               {t("faq.contact.link")}
             </Link>
@@ -133,4 +133,3 @@ export default function FAQPage() {
     </>
   );
 }
-

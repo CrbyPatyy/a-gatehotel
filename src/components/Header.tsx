@@ -7,19 +7,19 @@ import { Menu, X } from "lucide-react";
 import { useLang } from "@/contexts/LangContext";
 
 const navLinks = [
-  { href: "/", key: "nav.home" },
-  { href: "/rooms", key: "nav.rooms" },
-  { href: "/plan", key: "nav.plan" },
-  { href: "/merit", key: "nav.merit" },
-  { href: "/faq", key: "nav.faq" },
-  { href: "/access", key: "nav.access" },
+  { href: "/rooms",       key: "nav.rooms" },
+  { href: "/plan",        key: "nav.plan" },
+  { href: "/merit",       key: "nav.merit" },
+  { href: "/faq",         key: "nav.faq" },
+  { href: "/access",      key: "nav.access" },
 ];
 
 export default function Header() {
   const { lang, setLang, t } = useLang();
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled]   = useState(false);
+  const [menuOpen, setMenuOpen]   = useState(false);
   const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -29,74 +29,94 @@ export default function Header() {
 
   useEffect(() => setMenuOpen(false), [pathname]);
 
+  const transparent = isHome && !scrolled;
+
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-white/95 backdrop-blur-md shadow-sm"
-            : "bg-transparent"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          transparent
+            ? "bg-transparent"
+            : "bg-white/98 backdrop-blur-xl shadow-[0_1px_0_rgba(27,42,74,0.08)]"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 h-[72px] flex items-center justify-between">
+
+          {/* ── Logo ── */}
+          <Link href="/" className="flex items-center group">
             <Image
               src="/img/logo.png"
               alt="A-Gate Hotel Hakodate"
-              width={120}
-              height={40}
-              className={`object-contain transition-all ${scrolled ? "brightness-100" : "brightness-0 invert"}`}
+              width={110}
+              height={36}
+              className={`object-contain transition-all duration-300 ${
+                transparent ? "brightness-0 invert" : "brightness-100"
+              }`}
+              priority
             />
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-6">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-medium tracking-wide transition-colors relative group ${
-                  pathname === link.href
-                    ? scrolled ? "text-[#D4973B]" : "text-[#D4973B]"
-                    : scrolled ? "text-[#1A1A1A] hover:text-[#D4973B]" : "text-white/90 hover:text-white"
-                }`}
-              >
-                {t(link.key)}
-                <span
-                  className={`absolute -bottom-1 left-0 h-0.5 bg-[#D4973B] transition-all duration-200 ${
-                    pathname === link.href ? "w-full" : "w-0 group-hover:w-full"
+          {/* ── Desktop nav ── */}
+          <nav className="hidden lg:flex items-center gap-1">
+            {navLinks.map((link) => {
+              const active = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`relative px-4 py-2 text-[13px] font-medium tracking-wide transition-colors ${
+                    active
+                      ? "text-[#C9924A]"
+                      : transparent
+                        ? "text-white/85 hover:text-white"
+                        : "text-[#1B2A4A]/80 hover:text-[#1B2A4A]"
                   }`}
-                />
-              </Link>
-            ))}
+                >
+                  {t(link.key)}
+                  <span
+                    className={`absolute bottom-0 left-4 right-4 h-px bg-[#C9924A] transition-transform origin-left duration-200 ${
+                      active ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                    }`}
+                  />
+                </Link>
+              );
+            })}
           </nav>
 
-          {/* Right: Lang toggle + Book CTA */}
-          <div className="hidden md:flex items-center gap-3">
+          {/* ── Right actions ── */}
+          <div className="hidden lg:flex items-center gap-3">
+            {/* Lang toggle */}
             <button
               onClick={() => setLang(lang === "en" ? "jp" : "en")}
-              className={`text-xs font-semibold tracking-widest px-3 py-1.5 rounded-full border transition-all ${
-                scrolled
-                  ? "border-[#1B2A4A] text-[#1B2A4A] hover:bg-[#1B2A4A] hover:text-white"
-                  : "border-white/60 text-white hover:border-white hover:bg-white/10"
+              className={`text-[11px] font-semibold tracking-[0.14em] uppercase px-3 py-1.5 transition-colors ${
+                transparent
+                  ? "text-white/70 hover:text-white"
+                  : "text-[#1B2A4A]/60 hover:text-[#1B2A4A]"
               }`}
             >
               {lang === "en" ? "日本語" : "English"}
             </button>
+
+            <div className={`w-px h-4 ${transparent ? "bg-white/25" : "bg-[#1B2A4A]/15"}`} />
+
+            {/* Book CTA */}
             <Link
               href="/reservation"
-              className="text-sm font-semibold px-5 py-2 rounded-full bg-[#D4973B] text-white hover:bg-[#C0862A] transition-colors shadow-sm"
+              className={`text-[11px] font-bold tracking-[0.12em] uppercase px-5 py-2.5 transition-all ${
+                transparent
+                  ? "bg-[#C9924A] text-white hover:bg-[#B87E38]"
+                  : "bg-[#1B2A4A] text-white hover:bg-[#243660]"
+              }`}
             >
               {t("nav.book")}
             </Link>
           </div>
 
-          {/* Mobile hamburger */}
+          {/* ── Mobile burger ── */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className={`md:hidden p-2 rounded-lg transition-colors ${
-              scrolled ? "text-[#1B2A4A]" : "text-white"
+            className={`lg:hidden p-2 transition-colors ${
+              transparent ? "text-white" : "text-[#1B2A4A]"
             }`}
             aria-label="Toggle menu"
           >
@@ -105,47 +125,63 @@ export default function Header() {
         </div>
       </header>
 
-      {/* Mobile drawer */}
+      {/* ── Mobile full-screen drawer ── */}
       <div
-        className={`fixed inset-0 z-40 md:hidden transition-all duration-300 ${
+        className={`fixed inset-0 z-40 lg:hidden transition-all duration-400 ${
           menuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
       >
+        {/* Backdrop */}
         <div
-          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+          className="absolute inset-0 bg-[#0F1C33]/80 backdrop-blur-sm"
           onClick={() => setMenuOpen(false)}
         />
+        {/* Panel */}
         <div
-          className={`absolute top-0 right-0 h-full w-72 bg-white shadow-2xl transition-transform duration-300 ${
+          className={`absolute top-0 right-0 h-full w-80 bg-[#F9F7F4] shadow-2xl transition-transform duration-400 ${
             menuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="pt-20 px-6 pb-6 flex flex-col h-full">
+          {/* Close */}
+          <button
+            onClick={() => setMenuOpen(false)}
+            className="absolute top-5 right-5 p-2 text-[#1B2A4A]"
+          >
+            <X size={22} />
+          </button>
+
+          <div className="pt-20 px-8 pb-8 flex flex-col h-full">
+            {/* Logo inside drawer */}
+            <div className="mb-10">
+              <Image src="/img/logo.png" alt="A-Gate" width={90} height={28} className="object-contain" />
+            </div>
+
             <nav className="flex flex-col gap-1 flex-1">
-              {navLinks.map((link) => (
+              {[{ href: "/", key: "nav.home" }, ...navLinks].map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`py-3 px-4 rounded-lg text-sm font-medium transition-colors ${
+                  className={`py-3 px-4 text-sm font-medium border-b border-[#EAE6E1] transition-colors ${
                     pathname === link.href
-                      ? "bg-[#1B2A4A] text-white"
-                      : "text-[#1A1A1A] hover:bg-[#F8F7F4]"
+                      ? "text-[#C9924A]"
+                      : "text-[#1B2A4A] hover:text-[#C9924A]"
                   }`}
                 >
                   {t(link.key)}
                 </Link>
               ))}
             </nav>
-            <div className="border-t border-[#E8E4DF] pt-4 flex flex-col gap-3">
+
+            <div className="pt-6 flex flex-col gap-3">
               <button
                 onClick={() => setLang(lang === "en" ? "jp" : "en")}
-                className="text-sm font-semibold py-2 px-4 rounded-full border border-[#1B2A4A] text-[#1B2A4A] hover:bg-[#1B2A4A] hover:text-white transition-colors"
+                className="text-[12px] font-semibold tracking-widest uppercase py-2 px-4 border border-[#1B2A4A]/30 text-[#1B2A4A] hover:border-[#1B2A4A] transition-colors"
               >
                 {lang === "en" ? "日本語に切替" : "Switch to English"}
               </button>
               <Link
                 href="/reservation"
-                className="text-center text-sm font-semibold py-3 px-4 rounded-full bg-[#D4973B] text-white hover:bg-[#C0862A] transition-colors"
+                className="text-center text-[11px] font-bold tracking-[0.12em] uppercase py-3 px-4 bg-[#C9924A] text-white hover:bg-[#B87E38] transition-colors"
               >
                 {t("nav.book")}
               </Link>
@@ -156,4 +192,3 @@ export default function Header() {
     </>
   );
 }
-
