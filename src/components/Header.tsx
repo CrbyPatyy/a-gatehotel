@@ -21,11 +21,30 @@ export default function Header() {
   const { lang, setLang } = useLang();
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [hidden, setHidden] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 60);
+    let lastY = window.scrollY;
+
+    const handleScroll = () => {
+      const currentY = window.scrollY;
+      const diff = currentY - lastY;
+
+      // Mark as scrolled past hero
+      setScrolled(currentY > 60);
+
+      // Hide when scrolling DOWN (and past threshold), show when scrolling UP
+      if (diff > 6 && currentY > 120) {
+        setHidden(true);
+      } else if (diff < -6) {
+        setHidden(false);
+      }
+
+      lastY = currentY;
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -37,6 +56,8 @@ export default function Header() {
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          hidden ? "-translate-y-full" : "translate-y-0"
+        } ${
           transparent
             ? "bg-transparent"
             : "bg-white/98 backdrop-blur-xl border-b border-[#E8E4DF] shadow-sm"
