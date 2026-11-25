@@ -16,7 +16,7 @@ export default function ReservationPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="overline justify-center text-[#C9924A]/80 mb-5"
+            className="eyebrow justify-center text-[#C9924A]/80 mb-5"
           >
             {lang === "en" ? "Book Direct" : "公式予約"}
           </motion.p>
@@ -24,7 +24,7 @@ export default function ReservationPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.7 }}
-            className="font-serif-display text-5xl md:text-6xl text-white mb-5"
+            className="serif-display text-5xl md:text-6xl text-white mb-5"
           >
             {t("res.title")}
           </motion.h1>
@@ -53,7 +53,7 @@ export default function ReservationPage() {
                 <Shield size={24} className="text-[#C9924A]" />
               </div>
             </div>
-            <h2 className="font-serif-display text-2xl md:text-3xl text-white mb-3">{t("res.guarantee")}</h2>
+            <h2 className="serif-display text-2xl md:text-3xl text-white mb-3">{t("res.guarantee")}</h2>
             <p className="text-white/60 max-w-lg mx-auto leading-relaxed text-sm">{t("res.guarantee.desc")}</p>
           </motion.div>
 
@@ -64,7 +64,7 @@ export default function ReservationPage() {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="bg-white shadow-sm border border-[#EAE6E1] p-8 md:p-12"
           >
-            <h3 className="font-serif-display text-2xl text-[#1B2A4A] mb-8 flex items-center gap-3">
+            <h3 className="serif-display text-2xl text-[#1B2A4A] mb-8 flex items-center gap-3">
               <Calendar size={20} className="text-[#C9924A]" />
               {t("res.cta")}
             </h3>

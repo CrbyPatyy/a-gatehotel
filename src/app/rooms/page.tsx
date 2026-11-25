@@ -80,7 +80,7 @@ export default function RoomsPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="overline text-[#C9924A]/80 mb-5"
+            className="eyebrow text-[#C9924A]/80 mb-5"
           >
             {lang === "en" ? "Accommodation" : "宿泊タイプ"}
           </motion.p>
@@ -88,7 +88,7 @@ export default function RoomsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.7 }}
-            className="font-serif-display text-5xl md:text-6xl text-white mb-5"
+            className="serif-display text-5xl md:text-6xl text-white mb-5"
           >
             {t("rooms.title")}
           </motion.h1>
@@ -135,7 +135,7 @@ export default function RoomsPage() {
               {/* Info */}
               <div className={`flex flex-col justify-center px-8 md:px-14 py-12 md:py-16 bg-white ${i % 2 === 1 ? "md:col-start-1 md:row-start-1" : ""}`}>
                 <div className="gold-divider" />
-                <h2 className="font-serif-display text-3xl md:text-4xl text-[#1B2A4A] mb-4">{t(room.nameKey)}</h2>
+                <h2 className="serif-display text-3xl md:text-4xl text-[#1B2A4A] mb-4">{t(room.nameKey)}</h2>
                 <p className="text-[#6B6B6B] leading-relaxed mb-7">{t(room.descKey)}</p>
 
                 <div className="flex gap-8 mb-8">
@@ -171,8 +171,8 @@ export default function RoomsPage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <p className="overline justify-center">{lang === "en" ? "Every Room" : "全室共通"}</p>
-            <h2 className="font-serif-display text-3xl md:text-4xl text-[#1B2A4A]">{t("rooms.amenities.title")}</h2>
+            <p className="eyebrow justify-center">{lang === "en" ? "Every Room" : "全室共通"}</p>
+            <h2 className="serif-display text-3xl md:text-4xl text-[#1B2A4A]">{t("rooms.amenities.title")}</h2>
           </motion.div>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
             {amenities.map((a, i) => (
@@ -201,8 +201,8 @@ export default function RoomsPage() {
             viewport={{ once: true }}
             className="mb-12"
           >
-            <p className="overline">{lang === "en" ? "Hotel Facilities" : "館内施設"}</p>
-            <h2 className="font-serif-display text-3xl md:text-4xl text-[#1B2A4A]">
+            <p className="eyebrow">{lang === "en" ? "Hotel Facilities" : "館内施設"}</p>
+            <h2 className="serif-display text-3xl md:text-4xl text-[#1B2A4A]">
               {lang === "en" ? "Exclusive Amenities" : "充実の館内サービス"}
             </h2>
           </motion.div>

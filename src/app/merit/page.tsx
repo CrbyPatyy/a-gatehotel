@@ -30,7 +30,7 @@ export default function MeritPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="overline justify-center text-[#C9924A]/80 mb-5"
+            className="eyebrow justify-center text-[#C9924A]/80 mb-5"
           >
             {lang === "en" ? "Value & Experience" : "嬉しい無料特典"}
           </motion.p>
@@ -38,7 +38,7 @@ export default function MeritPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.7 }}
-            className="font-serif-display text-5xl md:text-6xl text-white mb-5"
+            className="serif-display text-5xl md:text-6xl text-white mb-5"
           >
             {t("merit.page.title")}
           </motion.h1>
@@ -80,7 +80,7 @@ export default function MeritPage() {
             <div className={`flex flex-col justify-center px-8 md:px-14 py-12 md:py-16 bg-white ${i % 2 === 1 ? "md:col-start-1 md:row-start-1" : ""}`}>
               <span className="text-4xl mb-5 block">{merit.icon}</span>
               <div className="gold-divider" />
-              <h2 className="font-serif-display text-2xl md:text-3xl text-[#1B2A4A] mb-4">{t(merit.titleKey)}</h2>
+              <h2 className="serif-display text-2xl md:text-3xl text-[#1B2A4A] mb-4">{t(merit.titleKey)}</h2>
               <p className="text-[#6B6B6B] leading-relaxed text-[15px]">{t(merit.descKey)}</p>
             </div>
           </motion.div>
@@ -98,8 +98,8 @@ export default function MeritPage() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <p className="overline justify-center text-white/60 mb-5">{lang === "en" ? "Best Rate Guaranteed" : "公式最安値"}</p>
-            <h2 className="font-serif-display text-4xl md:text-5xl text-white mb-5">{t("res.title")}</h2>
+            <p className="eyebrow justify-center text-white/60 mb-5">{lang === "en" ? "Best Rate Guaranteed" : "公式最安値"}</p>
+            <h2 className="serif-display text-4xl md:text-5xl text-white mb-5">{t("res.title")}</h2>
             <p className="text-white/60 mb-10">{t("plan.guarantee")}</p>
             <Link href="/reservation" className="btn-primary">
               {t("res.cta")} <ArrowRight size={15} />

@@ -75,8 +75,8 @@ export default function FAQPage() {
       {/* ── Hero ── */}
       <section className="pt-36 pb-20 bg-[#F9F7F4] border-b border-[#EAE6E1]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <p className="overline">{lang === "en" ? "Support" : "よくあるご質問"}</p>
-          <h1 className="font-serif-display text-5xl md:text-6xl text-[#1B2A4A] mb-5">{t("faq.title")}</h1>
+          <p className="eyebrow">{lang === "en" ? "Support" : "よくあるご質問"}</p>
+          <h1 className="serif-display text-5xl md:text-6xl text-[#1B2A4A] mb-5">{t("faq.title")}</h1>
           <p className="text-[#6B6B6B] text-lg max-w-xl">{t("faq.sub")}</p>
         </div>
       </section>

@@ -31,7 +31,7 @@ export default function AccessPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="overline text-[#C9924A]/80 mb-5"
+            className="eyebrow text-[#C9924A]/80 mb-5"
           >
             {lang === "en" ? "Location" : "アクセス"}
           </motion.p>
@@ -39,7 +39,7 @@ export default function AccessPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.7 }}
-            className="font-serif-display text-5xl md:text-6xl text-white mb-5"
+            className="serif-display text-5xl md:text-6xl text-white mb-5"
           >
             {t("access.title")}
           </motion.h1>
@@ -128,8 +128,8 @@ export default function AccessPage() {
             transition={{ duration: 0.6 }}
             className="mb-12"
           >
-            <p className="overline">{lang === "en" ? "Surroundings" : "周辺案内"}</p>
-            <h2 className="font-serif-display text-3xl md:text-4xl text-[#1B2A4A]">{t("access.nearby.title")}</h2>
+            <p className="eyebrow">{lang === "en" ? "Surroundings" : "周辺案内"}</p>
+            <h2 className="serif-display text-3xl md:text-4xl text-[#1B2A4A]">{t("access.nearby.title")}</h2>
           </motion.div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">

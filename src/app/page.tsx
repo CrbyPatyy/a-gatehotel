@@ -55,7 +55,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.7, ease: EASE }}
-            className="overline text-white/70 mb-5"
+            className="eyebrow text-white/70 mb-5"
           >
             A-Gate Hotel · Hakodate
           </motion.p>
@@ -64,7 +64,7 @@ export default function HomePage() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.9, ease: EASE }}
-            className="font-serif-display text-5xl md:text-7xl lg:text-8xl text-white leading-[1.05] mb-6 max-w-3xl"
+            className="serif-display text-5xl md:text-7xl lg:text-8xl text-white leading-[1.05] mb-6 max-w-3xl"
           >
             {t("hero.tagline")}
           </motion.h1>
@@ -141,8 +141,8 @@ export default function HomePage() {
             className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6"
           >
             <div>
-              <p className="overline">{lang === "en" ? "Accommodation" : "宿泊タイプ"}</p>
-              <h2 className="font-serif-display text-4xl md:text-5xl text-[#1B2A4A]">{t("rooms.title")}</h2>
+              <p className="eyebrow">{lang === "en" ? "Accommodation" : "宿泊タイプ"}</p>
+              <h2 className="serif-display text-4xl md:text-5xl text-[#1B2A4A]">{t("rooms.title")}</h2>
             </div>
             <Link href="/rooms" className="inline-flex items-center gap-2 text-sm font-semibold text-[#C9924A] hover:gap-3 transition-all shrink-0">
               {lang === "en" ? "View all rooms" : "全客室を見る"} <ArrowRight size={15} />
@@ -174,7 +174,7 @@ export default function HomePage() {
                       <span key={tag} className="text-[10px] px-2.5 py-1 bg-white/15 backdrop-blur-sm text-white font-medium tracking-wide">{tag}</span>
                     ))}
                   </div>
-                  <h3 className="font-serif-display text-2xl md:text-3xl text-white">{t(roomCards[0].nameKey)}</h3>
+                  <h3 className="serif-display text-2xl md:text-3xl text-white">{t(roomCards[0].nameKey)}</h3>
                   <span className="mt-3 inline-flex items-center gap-1.5 text-[#C9924A] text-xs font-semibold tracking-wide uppercase group-hover:gap-2.5 transition-all">
                     {lang === "en" ? "View Room" : "詳しく見る"} <ArrowRight size={12} />
                   </span>
@@ -232,10 +232,10 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <p className="overline text-[#C9924A]/80 mb-5">
+            <p className="eyebrow text-[#C9924A]/80 mb-5">
               {lang === "en" ? "Every Evening · Complimentary" : "毎晩・無料サービス"}
             </p>
-            <h2 className="font-serif-display text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight">
+            <h2 className="serif-display text-4xl md:text-5xl lg:text-6xl text-white mb-6 leading-tight">
               {t("merit.page.drinks.title")}
             </h2>
             <p className="text-white/60 text-lg leading-relaxed mb-10">
@@ -281,8 +281,8 @@ export default function HomePage() {
             transition={{ duration: 0.6 }}
             className="text-center mb-14"
           >
-            <p className="overline justify-center">{lang === "en" ? "Guest Reviews" : "ゲストの声"}</p>
-            <h2 className="font-serif-display text-4xl md:text-5xl text-[#1B2A4A]">
+            <p className="eyebrow justify-center">{lang === "en" ? "Guest Reviews" : "ゲストの声"}</p>
+            <h2 className="serif-display text-4xl md:text-5xl text-[#1B2A4A]">
               {lang === "en" ? "What Guests Say" : "口コミ"}
             </h2>
           </motion.div>
@@ -323,8 +323,8 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <p className="overline">{lang === "en" ? "Location" : "アクセス"}</p>
-            <h2 className="font-serif-display text-4xl md:text-5xl text-[#1B2A4A] mb-5">{t("access.title")}</h2>
+            <p className="eyebrow">{lang === "en" ? "Location" : "アクセス"}</p>
+            <h2 className="serif-display text-4xl md:text-5xl text-[#1B2A4A] mb-5">{t("access.title")}</h2>
             <p className="text-[#6B6B6B] leading-relaxed mb-8">{t("access.sub")}</p>
 
             <div className="flex flex-col divide-y divide-[#EAE6E1]">
@@ -385,10 +385,10 @@ export default function HomePage() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <p className="overline justify-center text-white/60 mb-5">
+            <p className="eyebrow justify-center text-white/60 mb-5">
               {lang === "en" ? "Best Rate Guaranteed" : "公式サイト最安値保証"}
             </p>
-            <h2 className="font-serif-display text-4xl md:text-5xl lg:text-6xl text-white mb-5">
+            <h2 className="serif-display text-4xl md:text-5xl lg:text-6xl text-white mb-5">
               {t("res.title")}
             </h2>
             <p className="text-white/60 mb-10">{t("res.guarantee.desc")}</p>

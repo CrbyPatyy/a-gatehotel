@@ -72,7 +72,7 @@ export default function PlanPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="overline justify-center text-[#C9924A]/80 mb-5"
+            className="eyebrow justify-center text-[#C9924A]/80 mb-5"
           >
             {lang === "en" ? "Pricing & Plans" : "ご宿泊プラン"}
           </motion.p>
@@ -80,7 +80,7 @@ export default function PlanPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.7 }}
-            className="font-serif-display text-5xl md:text-6xl text-white mb-5"
+            className="serif-display text-5xl md:text-6xl text-white mb-5"
           >
             {t("plan.title")}
           </motion.h1>
@@ -125,7 +125,7 @@ export default function PlanPage() {
                 </span>
               )}
 
-              <h2 className={`font-serif-display text-2xl md:text-3xl mb-2 mt-${plan.featured ? "6" : "2"} ${plan.featured ? "text-white" : "text-[#1B2A4A]"}`}>
+              <h2 className={`serif-display text-2xl md:text-3xl mb-2 mt-${plan.featured ? "6" : "2"} ${plan.featured ? "text-white" : "text-[#1B2A4A]"}`}>
                 {t(plan.nameKey)}
               </h2>
               <p className={`text-sm leading-relaxed mb-6 ${plan.featured ? "text-white/60" : "text-[#6B6B6B]"}`}>
@@ -182,7 +182,7 @@ export default function PlanPage() {
       <section className="pb-24 px-6 lg:px-8">
         <div className="max-w-4xl mx-auto bg-[#1B2A4A] text-white p-10 md:p-12 text-center">
           <div className="text-4xl mb-4">🏆</div>
-          <h3 className="font-serif-display text-2xl md:text-3xl text-white mb-3">{t("res.guarantee")}</h3>
+          <h3 className="serif-display text-2xl md:text-3xl text-white mb-3">{t("res.guarantee")}</h3>
           <p className="text-white/60 max-w-lg mx-auto mb-7">{t("plan.guarantee")}</p>
           <Link
             href="/reservation"

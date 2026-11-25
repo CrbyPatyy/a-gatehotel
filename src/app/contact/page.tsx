@@ -20,8 +20,8 @@ export default function ContactPage() {
       {/* ── Page hero ── */}
       <section className="pt-36 pb-20 bg-[#F9F7F4] border-b border-[#EAE6E1]">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <p className="overline">{lang === "en" ? "Support" : "お問い合わせ"}</p>
-          <h1 className="font-serif-display text-5xl md:text-6xl text-[#1B2A4A] mb-5">{t("contact.title")}</h1>
+          <p className="eyebrow">{lang === "en" ? "Support" : "お問い合わせ"}</p>
+          <h1 className="serif-display text-5xl md:text-6xl text-[#1B2A4A] mb-5">{t("contact.title")}</h1>
           <p className="text-[#6B6B6B] text-lg max-w-xl">{t("contact.sub")}</p>
         </div>
       </section>
@@ -74,7 +74,7 @@ export default function ContactPage() {
               {submitted ? (
                 <div className="flex flex-col items-center justify-center py-12 text-center">
                   <CheckCircle size={48} className="text-[#C9924A] mb-4" />
-                  <h3 className="font-serif-display text-3xl text-[#1B2A4A] mb-2">
+                  <h3 className="serif-display text-3xl text-[#1B2A4A] mb-2">
                     {lang === "en" ? "Message Sent" : "送信完了"}
                   </h3>
                   <p className="text-[#6B6B6B] text-sm">{t("contact.success")}</p>
