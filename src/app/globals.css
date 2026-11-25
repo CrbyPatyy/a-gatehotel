@@ -17,29 +17,29 @@
   --foreground: #1A1A1A;
 }
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+  }
 
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-}
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: 'DM Sans', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+  }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: 'DM Sans', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
+  h1, h2, h3, h4 {
+    line-height: 1.15;
+  }
 }
 
 /* ─── Serif display heading class ───────────────── */
 .serif-display {
-  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif !important;
+  font-family: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
   letter-spacing: -0.01em;
 }
 
@@ -48,84 +48,81 @@ body {
 ::-webkit-scrollbar-track { background: #F9F7F4; }
 ::-webkit-scrollbar-thumb { background: #C9924A; border-radius: 2px; }
 
-/* ─── Heading defaults ──────────────────────────── */
-h1, h2, h3, h4 {
-  line-height: 1.15;
-}
+@layer components {
+  /* ─── Eyebrow / section label ─────────────────── */
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #C9924A;
+    margin-bottom: 1rem;
+  }
+  .eyebrow::before {
+    content: '';
+    display: block;
+    width: 2rem;
+    height: 1px;
+    background: currentColor;
+    flex-shrink: 0;
+  }
 
-/* ─── Eyebrow / section label (renamed from "overline" to avoid Tailwind conflict) */
-.eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 0.6875rem;
-  font-weight: 600;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #C9924A;
-  margin-bottom: 1rem;
-}
-.eyebrow::before {
-  content: '';
-  display: block;
-  width: 2rem;
-  height: 1px;
-  background: currentColor;
-  flex-shrink: 0;
-}
+  /* ─── Gold divider ────────────────────────────── */
+  .gold-divider {
+    width: 3rem;
+    height: 2px;
+    background: linear-gradient(90deg, #C9924A, #E0B278);
+    margin: 1.5rem 0;
+  }
 
-/* ─── Gold divider ──────────────────────────────── */
-.gold-divider {
-  width: 3rem;
-  height: 2px;
-  background: linear-gradient(90deg, #C9924A, #E0B278);
-  margin: 1.5rem 0;
-}
+  /* ─── Primary button ──────────────────────────── */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background: #C9924A;
+    color: white;
+    font-weight: 600;
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .btn-primary:hover {
+    background: #B87E38;
+    transform: translateY(-1px);
+  }
 
-/* ─── Primary button ────────────────────────────── */
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.875rem 2rem;
-  background: #C9924A;
-  color: white !important;
-  font-weight: 600;
-  font-size: 0.8125rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-.btn-primary:hover {
-  background: #B87E38;
-  transform: translateY(-1px);
-}
+  /* ─── Outline button ──────────────────────────── */
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 2rem;
+    background: transparent;
+    color: white;
+    font-weight: 600;
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.4);
+    transition: all 0.2s ease;
+  }
+  .btn-outline:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: white;
+  }
 
-/* ─── Outline button ────────────────────────────── */
-.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.875rem 2rem;
-  background: transparent;
-  color: white !important;
-  font-weight: 600;
-  font-size: 0.8125rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  border: 1px solid rgba(255,255,255,0.4);
-  transition: all 0.2s ease;
-}
-.btn-outline:hover {
-  background: rgba(255,255,255,0.1);
-  border-color: white;
-}
-
-/* ─── Card hover ────────────────────────────────── */
-.card-hover {
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-.card-hover:hover {
-  box-shadow: 0 20px 60px rgba(27, 42, 74, 0.12);
-  transform: translateY(-3px);
+  /* ─── Card hover ──────────────────────────────── */
+  .card-hover {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  .card-hover:hover {
+    box-shadow: 0 20px 60px rgba(27, 42, 74, 0.12);
+    transform: translateY(-3px);
+  }
 }
