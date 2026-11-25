@@ -1,37 +1,49 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useLang } from "@/contexts/LangContext";
 
-// Original site nav items — matches a-gatehotel.com/hakodate exactly
+// Nav labels matching original a-gatehotel.com/hakodate exactly
 const navLinks = [
-  { href: "/",            keyEn: "Home",             keyJp: "ホーム" },
-  { href: "/rooms",       keyEn: "Facilities",        keyJp: "施設案内" },
-  { href: "/plan",        keyEn: "Pricing Plans",     keyJp: "料金プラン" },
-  { href: "/merit",       keyEn: "Merits",            keyJp: "メリット" },
-  { href: "/faq",         keyEn: "FAQ",               keyJp: "よくある質問" },
-  { href: "/access",      keyEn: "Access",            keyJp: "アクセス" },
-  { href: "/contact",     keyEn: "Management Co.",    keyJp: "運営会社" },
+  { href: "/",        keyEn: "Home",          keyJp: "ホーム" },
+  { href: "/rooms",   keyEn: "Facilities",    keyJp: "施設案内" },
+  { href: "/plan",    keyEn: "Pricing Plans", keyJp: "料金プラン" },
+  { href: "/merit",   keyEn: "Merits",        keyJp: "メリット" },
+  { href: "/faq",     keyEn: "FAQ",           keyJp: "よくある質問" },
+  { href: "/access",  keyEn: "Access",        keyJp: "アクセス" },
+  { href: "/contact", keyEn: "Company",       keyJp: "運営会社" },
 ];
-
-// Original nav background colour — dark olive from the screenshot
-const NAV_BG = "#4B4535";
 
 export default function Header() {
   const { lang, setLang } = useLang();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const isHome = pathname === "/";
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Transparent on home hero, white/frosted when scrolled or on subpages
+  const transparent = isHome && !scrolled;
 
   return (
     <>
-      {/* ══════════════════════════════════════════
-          TOP STRIP — logo + lang toggle + booking
-      ══════════════════════════════════════════ */}
-      <div className="bg-white w-full border-b border-[#E8E4DF]">
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          transparent
+            ? "bg-transparent"
+            : "bg-white/98 backdrop-blur-xl border-b border-[#E8E4DF] shadow-sm"
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-4 md:px-8 h-[72px] flex items-center justify-between gap-4">
+
           {/* Logo */}
           <Link href="/" className="shrink-0">
             <Image
@@ -39,16 +51,50 @@ export default function Header() {
               alt="A-Gate Hotel Hakodate"
               width={140}
               height={48}
-              className="object-contain"
+              className={`object-contain transition-all duration-300 ${
+                transparent ? "brightness-0 invert" : ""
+              }`}
               priority
             />
           </Link>
 
-          {/* Right: lang + reservation */}
+          {/* Desktop nav links */}
+          <nav className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => {
+              const active =
+                link.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(link.href);
+
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`relative px-3 py-2 text-[13px] font-medium tracking-wide transition-colors ${
+                    transparent
+                      ? "text-white hover:text-amber-300"
+                      : "text-[#2D2D2D] hover:text-[#C9924A]"
+                  } ${active ? (transparent ? "text-amber-300" : "text-[#C9924A]") : ""}`}
+                >
+                  {lang === "en" ? link.keyEn : link.keyJp}
+                  {/* Amber underline for active */}
+                  {active && (
+                    <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#C9924A] rounded-full" />
+                  )}
+                </Link>
+              );
+            })}
+          </nav>
+
+          {/* Right: lang toggle + Book Now */}
           <div className="hidden md:flex items-center gap-3">
             <button
               onClick={() => setLang(lang === "en" ? "jp" : "en")}
-              className="text-[11px] font-semibold tracking-widest px-3 py-1.5 border border-[#4B4535]/30 text-[#4B4535] hover:bg-[#4B4535] hover:text-white transition-all"
+              className={`text-[11px] font-semibold tracking-widest px-3 py-1.5 border transition-all ${
+                transparent
+                  ? "border-white/50 text-white hover:bg-white hover:text-[#1B2A4A]"
+                  : "border-[#1B2A4A]/30 text-[#1B2A4A] hover:bg-[#1B2A4A] hover:text-white"
+              }`}
             >
               {lang === "en" ? "日本語" : "English"}
             </button>
@@ -63,46 +109,15 @@ export default function Header() {
           {/* Mobile burger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden p-2 text-[#4B4535]"
+            className={`md:hidden p-2 transition-colors ${
+              transparent ? "text-white" : "text-[#1B2A4A]"
+            }`}
             aria-label="Toggle menu"
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
-      </div>
-
-      {/* ══════════════════════════════════════════
-          NAV BAR — dark olive, full width
-          Matches original a-gatehotel.com/hakodate
-      ══════════════════════════════════════════ */}
-      <nav
-        className="w-full hidden md:block sticky top-0 z-50"
-        style={{ backgroundColor: NAV_BG }}
-      >
-        <div className="max-w-7xl mx-auto flex">
-          {navLinks.map((link) => {
-            // Active = exact match, or /rooms matches any /rooms subpath
-            const active =
-              link.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(link.href);
-
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="relative flex-1 text-center py-3.5 text-sm font-medium text-white transition-colors hover:bg-black/15"
-                style={{
-                  borderBottom: active ? "3px solid #C9924A" : "3px solid transparent",
-                  backgroundColor: active ? "rgba(0,0,0,0.18)" : undefined,
-                }}
-              >
-                {lang === "en" ? link.keyEn : link.keyJp}
-              </Link>
-            );
-          })}
-        </div>
-      </nav>
+      </header>
 
       {/* ══════════════════════════════════════════
           MOBILE DRAWER
@@ -119,10 +134,9 @@ export default function Header() {
         />
         {/* Slide-in panel */}
         <div
-          className={`absolute top-0 left-0 h-full w-72 shadow-2xl transition-transform duration-300 ${
+          className={`absolute top-0 left-0 h-full w-72 bg-[#1B2A4A] shadow-2xl transition-transform duration-300 ${
             menuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
-          style={{ backgroundColor: NAV_BG }}
         >
           <div className="flex justify-between items-center p-5 border-b border-white/20">
             <Image
@@ -145,7 +159,7 @@ export default function Header() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="py-4 px-6 text-sm font-medium text-white border-b border-white/10 hover:bg-black/20 transition-colors"
+                  className="py-4 px-6 text-sm font-medium text-white border-b border-white/10 hover:bg-white/10 transition-colors"
                   style={{
                     borderLeft: active ? "3px solid #C9924A" : "3px solid transparent",
                   }}
