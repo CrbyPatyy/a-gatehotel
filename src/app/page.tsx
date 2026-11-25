@@ -29,8 +29,8 @@ export default function HomePage() {
       {/* ── Hero ────────────────────────────────────────────────────── */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1480796927426-f609979314bd?w=1800&q=85"
-          alt="Hakodate city view"
+          src="/img/header_bg.jpg"
+          alt="A-Gate Hotel Hakodate"
           fill
           className="object-cover"
           priority
@@ -134,10 +134,10 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {[
-              { img: "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80", nameKey: "rooms.single.name", descKey: "rooms.single.desc", tags: ["Solo", "Business"], href: "/rooms" },
-              { img: "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&q=80", nameKey: "rooms.connecting.name", descKey: "rooms.connecting.desc", tags: ["Family", "Groups"], href: "/rooms" },
-              { img: "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&q=80", nameKey: "rooms.theater.name", descKey: "rooms.theater.desc", tags: ["Unique", "🎬"], href: "/rooms" },
-              { img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80", nameKey: "rooms.kids.name", descKey: "rooms.kids.desc", tags: ["Family", "Kids"], href: "/rooms" },
+              { img: "/img/room05_standardtwinjpg.jpg", nameKey: "rooms.single.name", descKey: "rooms.single.desc", tags: ["Solo", "Business"], href: "/rooms" },
+              { img: "/img/room01_connect1.jpg", nameKey: "rooms.connecting.name", descKey: "rooms.connecting.desc", tags: ["Family", "Groups"], href: "/rooms" },
+              { img: "/img/facility01.jpg", nameKey: "rooms.theater.name", descKey: "rooms.theater.desc", tags: ["Unique", "🎬"], href: "/rooms" },
+              { img: "/img/room03_familykids1.jpg", nameKey: "rooms.kids.name", descKey: "rooms.kids.desc", tags: ["Family", "Kids"], href: "/rooms" },
             ].map((room, i) => (
               <motion.div
                 key={room.nameKey}
@@ -180,8 +180,8 @@ export default function HomePage() {
       <section className="py-24 bg-[#1B2A4A] relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <Image
-            src="https://images.unsplash.com/photo-1575444758702-4a6b9222336e?w=1200&q=60"
-            alt="Drinks"
+            src="/img/merit01.jpg"
+            alt="Free Drinks"
             fill
             className="object-cover"
           />

@@ -23,8 +23,8 @@ const rooms = [
     size: "18m²",
     maxGuests: 1,
     images: [
-      "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=800&q=80",
-      "https://images.unsplash.com/photo-1540518614846-7eded433c457?w=800&q=80",
+      "/img/room05_standardtwinjpg.jpg",
+      "/img/room06_semidouble.jpg",
     ],
     accent: "#1B2A4A",
   },
@@ -36,8 +36,8 @@ const rooms = [
     size: "36m²",
     maxGuests: 4,
     images: [
-      "https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=800&q=80",
-      "https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=800&q=80",
+      "/img/room01_connect1.jpg",
+      "/img/room01_connect3.jpg",
     ],
     accent: "#2D4A7A",
   },
@@ -49,8 +49,8 @@ const rooms = [
     size: "22m²",
     maxGuests: 2,
     images: [
-      "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=800&q=80",
-      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=800&q=80",
+      "/img/room04_semidoubletwin.jpg",
+      "/img/room06_semidouble.jpg",
     ],
     accent: "#0F1F38",
   },
@@ -62,8 +62,8 @@ const rooms = [
     size: "30m²",
     maxGuests: 3,
     images: [
-      "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80",
-      "https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=800&q=80",
+      "/img/room03_familykids1.jpg",
+      "/img/room01_connect1.jpg",
     ],
     accent: "#D4973B",
   },
@@ -92,7 +92,7 @@ export default function RoomsPage() {
       <section className="pt-32 pb-16 bg-[#1B2A4A] relative overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <Image
-            src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1400&q=60"
+            src="/img/room05_standardtwinjpg.jpg"
             alt="Rooms"
             fill
             className="object-cover"
@@ -223,7 +223,7 @@ export default function RoomsPage() {
             className="relative h-72 rounded-2xl overflow-hidden"
           >
             <Image
-              src="https://images.unsplash.com/photo-1663516920778-71e3c0ea7ea7?w=800&q=80"
+              src="/img/facility01.jpg"
               alt="Sauna"
               fill
               className="object-cover"

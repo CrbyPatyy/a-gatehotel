@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useLang } from "@/contexts/LangContext";
@@ -40,25 +41,13 @@ export default function Header() {
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-sm bg-[#1B2A4A] flex items-center justify-center">
-              <span className="text-[#D4973B] font-bold text-sm leading-none">AG</span>
-            </div>
-            <div className="flex flex-col leading-none">
-              <span
-                className={`font-bold text-sm tracking-widest uppercase transition-colors ${
-                  scrolled ? "text-[#1B2A4A]" : "text-white"
-                }`}
-              >
-                A-Gate Hotel
-              </span>
-              <span
-                className={`text-[10px] tracking-wider transition-colors ${
-                  scrolled ? "text-[#D4973B]" : "text-[#D4973B]"
-                }`}
-              >
-                HAKODATE
-              </span>
-            </div>
+            <Image
+              src="/img/logo.png"
+              alt="A-Gate Hotel Hakodate"
+              width={120}
+              height={40}
+              className={`object-contain transition-all ${scrolled ? "brightness-100" : "brightness-0 invert"}`}
+            />
           </Link>
 
           {/* Desktop Nav */}

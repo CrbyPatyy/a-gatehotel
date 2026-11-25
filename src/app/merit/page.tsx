@@ -6,14 +6,14 @@ import { useLang } from "@/contexts/LangContext";
 import { ArrowRight } from "lucide-react";
 
 const merits = [
-  { id: "drinks", icon: "🍺", titleKey: "merit.page.drinks.title", descKey: "merit.page.drinks.desc", img: "https://images.unsplash.com/photo-1575444758702-4a6b9222336e?w=600&q=80" },
-  { id: "snacks", icon: "🍜", titleKey: "merit.page.snacks.title", descKey: "merit.page.snacks.desc", img: "https://images.unsplash.com/photo-1569718212165-3a8278d5f624?w=600&q=80" },
-  { id: "shampoo", icon: "🧴", titleKey: "merit.page.shampoo.title", descKey: "merit.page.shampoo.desc", img: "https://images.unsplash.com/photo-1556228578-567ba7f9e4b8?w=600&q=80" },
-  { id: "pillow", icon: "🛏️", titleKey: "merit.page.pillow.title", descKey: "merit.page.pillow.desc", img: "https://images.unsplash.com/photo-1584132915807-fd1f5fbc078f?w=600&q=80" },
-  { id: "manga", icon: "📚", titleKey: "merit.page.manga.title", descKey: "merit.page.manga.desc", img: "https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?w=600&q=80" },
-  { id: "kids", icon: "🧸", titleKey: "merit.page.kids.title", descKey: "merit.page.kids.desc", img: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?w=600&q=80" },
-  { id: "location", icon: "📍", titleKey: "merit.page.location.title", descKey: "merit.page.location.desc", img: "https://images.unsplash.com/photo-1480796927426-f609979314bd?w=600&q=80" },
-  { id: "direct", icon: "💴", titleKey: "merit.page.direct.title", descKey: "merit.page.direct.desc", img: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&q=80" },
+  { id: "drinks", icon: "🍺", titleKey: "merit.page.drinks.title", descKey: "merit.page.drinks.desc", img: "/img/merit01.jpg" },
+  { id: "snacks", icon: "🍜", titleKey: "merit.page.snacks.title", descKey: "merit.page.snacks.desc", img: "/img/merit03.jpg" },
+  { id: "shampoo", icon: "🧴", titleKey: "merit.page.shampoo.title", descKey: "merit.page.shampoo.desc", img: "/img/merit04.jpg" },
+  { id: "pillow", icon: "🛏️", titleKey: "merit.page.pillow.title", descKey: "merit.page.pillow.desc", img: "/img/merit06.jpg" },
+  { id: "manga", icon: "📚", titleKey: "merit.page.manga.title", descKey: "merit.page.manga.desc", img: "/img/merit08.jpg" },
+  { id: "kids", icon: "🧸", titleKey: "merit.page.kids.title", descKey: "merit.page.kids.desc", img: "/img/merit09.jpg" },
+  { id: "location", icon: "📍", titleKey: "merit.page.location.title", descKey: "merit.page.location.desc", img: "/img/featuren01.jpg" },
+  { id: "direct", icon: "💴", titleKey: "merit.page.direct.title", descKey: "merit.page.direct.desc", img: "/img/featuren03.jpg" },
 ];
 
 export default function MeritPage() {
@@ -24,7 +24,7 @@ export default function MeritPage() {
       {/* Hero */}
       <section className="pt-32 pb-20 relative overflow-hidden bg-[#1B2A4A]">
         <div className="absolute inset-0 opacity-15">
-          <Image src="https://images.unsplash.com/photo-1575444758702-4a6b9222336e?w=1400&q=60" alt="bg" fill className="object-cover" />
+          <Image src="/img/merit01.jpg" alt="bg" fill className="object-cover" />
         </div>
         <div className="relative max-w-4xl mx-auto px-6 text-center">
           <p className="text-[#D4973B] text-xs tracking-[0.3em] uppercase font-semibold mb-4">Value & Experience</p>
