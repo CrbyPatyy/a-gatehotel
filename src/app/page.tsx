@@ -33,74 +33,88 @@ export default function HomePage() {
   return (
     <>
       {/* ══════════════════════════════════════════════════════════════
-          HERO — Full-screen cinematic
+          HERO — Full-screen cinematic, centered
       ══════════════════════════════════════════════════════════════ */}
-      <section className="relative h-screen min-h-[600px] flex items-end overflow-hidden">
+      <section className="relative h-screen min-h-[680px] flex items-center justify-center overflow-hidden">
         <Image
           src="/img/header_bg.jpg"
           alt="A-Gate Hotel Hakodate"
           fill
-          className="object-cover object-center"
+          className="object-cover object-center scale-[1.03]"
           priority
           sizes="100vw"
           quality={90}
         />
-        {/* Multi-layer gradient for depth */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-[#0A1628]/30 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/50 to-transparent" />
 
-        {/* Content — bottom-left aligned like luxury hotel sites */}
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 pb-20 md:pb-28">
+        {/* Subtle dark vignette — keep hotel image visible */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/25 to-black/60" />
+        <div className="absolute inset-0 bg-black/20" />
+
+        {/* Centered content */}
+        <div className="relative z-10 w-full max-w-4xl mx-auto px-6 lg:px-8 text-center flex flex-col items-center">
+
+          {/* Eyebrow */}
           <motion.p
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.7, ease: EASE }}
-            className="eyebrow text-white/70 mb-5"
+            className="text-[11px] tracking-[0.3em] uppercase text-white/60 font-medium mb-6"
           >
-            A-Gate Hotel · Hakodate
+            Hakodate, Hokkaido · Japan
           </motion.p>
 
+          {/* Main heading */}
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.9, ease: EASE }}
-            className="serif-display text-5xl md:text-7xl lg:text-8xl text-white leading-[1.05] mb-6 max-w-3xl"
+            className="serif-display text-5xl md:text-7xl lg:text-8xl text-white leading-[1.08] mb-6"
           >
             {t("hero.tagline")}
           </motion.h1>
 
+          {/* Amber divider line */}
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ delay: 0.9, duration: 0.6, ease: EASE }}
+            className="w-16 h-[2px] bg-[#C9924A] mb-6"
+          />
+
+          {/* Sub text */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.85, duration: 0.8 }}
-            className="text-white/65 text-base md:text-lg max-w-lg leading-relaxed mb-10"
+            transition={{ delay: 1.0, duration: 0.8 }}
+            className="text-white/65 text-base md:text-lg max-w-xl leading-relaxed mb-10"
           >
             {t("hero.sub")}
           </motion.p>
 
+          {/* CTAs */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.1, duration: 0.6 }}
-            className="flex flex-wrap gap-3"
+            transition={{ delay: 1.2, duration: 0.6 }}
+            className="flex flex-wrap justify-center gap-3"
           >
             <Link href="/reservation" className="btn-primary">
               {t("hero.cta")} <ArrowRight size={15} />
             </Link>
-            <Link href="/rooms" className="btn-outline">
+            <Link href="/rooms" className="btn-outline border-white/60 text-white hover:bg-white hover:text-[#1B2A4A]">
               {t("hero.explore")}
             </Link>
           </motion.div>
         </div>
 
-        {/* Scroll cue */}
+        {/* Scroll cue — bottom center */}
         <motion.div
           animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="absolute bottom-8 right-8 md:right-12 text-white/40 flex flex-col items-center gap-2"
+          transition={{ repeat: Infinity, duration: 2.2, ease: "easeInOut" }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 flex flex-col items-center gap-1.5"
         >
-          <span className="text-[9px] tracking-[0.2em] uppercase writing-mode-vertical rotate-90 mb-2 opacity-60">Scroll</span>
-          <ChevronDown size={20} />
+          <span className="text-[9px] tracking-[0.25em] uppercase">Scroll</span>
+          <ChevronDown size={18} />
         </motion.div>
       </section>
 
