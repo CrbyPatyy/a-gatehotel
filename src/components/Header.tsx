@@ -46,20 +46,16 @@ export default function Header() {
 
           {/* Logo */}
           <Link href="/" className="shrink-0">
-            <div
-              className={`transition-all duration-300 ${
-                transparent ? "" : "bg-[#1B2A4A] px-4 py-1.5 rounded"
+            <Image
+              src="/img/logo.png"
+              alt="A-Gate Hotel Hakodate"
+              width={140}
+              height={48}
+              className={`object-contain transition-all duration-300 ${
+                transparent ? "brightness-0 invert" : "brightness-0"
               }`}
-            >
-              <Image
-                src="/img/logo.png"
-                alt="A-Gate Hotel Hakodate"
-                width={140}
-                height={44}
-                className="object-contain transition-all duration-300 brightness-0 invert"
-                priority
-              />
-            </div>
+              priority
+            />
           </Link>
 
           {/* Desktop nav links */}
