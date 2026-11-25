@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import { useLang } from "@/contexts/LangContext";
 import { MapPin, Train, TramFront, Plane, ArrowRight } from "lucide-react";
-import Link from "next/link";
 
 const nearbySpots = [
   { icon: "🐟", en: "Hakodate Morning Market", jp: "函館朝市", distEn: "8 min walk", distJp: "徒歩8分" },
@@ -24,46 +23,66 @@ export default function AccessPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-16 bg-[#1B2A4A]">
-        <div className="max-w-7xl mx-auto px-6">
-          <p className="text-[#D4973B] text-xs tracking-[0.3em] uppercase font-semibold mb-3">Location</p>
-          <h1 className="text-5xl font-bold text-white mb-4">{t("access.title")}</h1>
-          <p className="text-white/60 text-lg max-w-xl">{t("access.sub")}</p>
+      {/* ── Page hero ── */}
+      <section className="pt-36 pb-20 bg-[#0F1C33] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-10 bg-[url('/img/featuren01.jpg')] bg-cover bg-center" />
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="overline text-[#C9924A]/80 mb-5"
+          >
+            {lang === "en" ? "Location" : "アクセス"}
+          </motion.p>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.7 }}
+            className="font-serif-display text-5xl md:text-6xl text-white mb-5"
+          >
+            {t("access.title")}
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+            className="text-white/50 text-lg max-w-xl"
+          >
+            {t("access.sub")}
+          </motion.p>
         </div>
       </section>
 
-      {/* Map + Info */}
-      <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12">
+      {/* ── Map + Info ── */}
+      <section className="py-24 px-6 lg:px-8 bg-[#F9F7F4]">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-14 md:gap-20 items-start">
           {/* Directions */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            {/* Address */}
-            <div className="flex items-start gap-3 mb-8 p-5 bg-[#F0EDE8] rounded-xl">
-              <MapPin size={20} className="text-[#D4973B] mt-0.5 shrink-0" />
+            <div className="flex items-start gap-4 mb-8 p-6 bg-white border border-[#EAE6E1]">
+              <MapPin size={20} className="text-[#C9924A] mt-0.5 shrink-0" />
               <div>
-                <p className="text-xs uppercase tracking-wider text-[#6B6B6B] mb-1">{t("access.address.label")}</p>
+                <p className="text-[10px] uppercase tracking-[0.18em] text-[#6B6B6B] mb-1">{t("access.address.label")}</p>
                 <p className="font-semibold text-[#1B2A4A]">{t("access.address.value")}</p>
               </div>
             </div>
 
-            {/* Direction items */}
-            <div className="space-y-4">
+            <div className="flex flex-col divide-y divide-[#EAE6E1] bg-white border border-[#EAE6E1] px-6">
               {directions.map((d) => {
                 const Icon = d.icon;
                 return (
-                  <div key={d.labelEn} className="flex items-center gap-4 p-5 bg-white rounded-xl shadow-sm border border-[#E8E4DF]">
-                    <div className="w-10 h-10 rounded-full bg-[#1B2A4A]/10 flex items-center justify-center shrink-0">
-                      <Icon size={18} className="text-[#1B2A4A]" />
+                  <div key={d.labelEn} className="flex items-center gap-4 py-5">
+                    <div className="w-10 h-10 bg-[#1B2A4A]/5 border border-[#EAE6E1] flex items-center justify-center shrink-0">
+                      <Icon size={17} className="text-[#C9924A]" />
                     </div>
                     <div>
-                      <p className="text-xs text-[#6B6B6B]">{lang === "en" ? d.labelEn : d.labelJp}</p>
-                      <p className="font-semibold text-[#1B2A4A]">{lang === "en" ? d.valueEn : d.valueJp}</p>
+                      <p className="text-[11px] uppercase tracking-wider text-[#6B6B6B]">{lang === "en" ? d.labelEn : d.labelJp}</p>
+                      <p className="font-semibold text-[#1B2A4A] text-sm mt-0.5">{lang === "en" ? d.valueEn : d.valueJp}</p>
                     </div>
                   </div>
                 );
@@ -74,7 +93,7 @@ export default function AccessPage() {
               href="https://maps.google.com/?q=A-GATE+HOTEL+函館"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-2 px-6 py-3 bg-[#D4973B] text-white text-sm font-semibold rounded-full hover:bg-[#C0862A] transition-colors"
+              className="mt-8 btn-primary"
             >
               {t("access.map.label")} <ArrowRight size={14} />
             </a>
@@ -82,11 +101,11 @@ export default function AccessPage() {
 
           {/* Map Embed */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 24 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="relative h-96 md:h-auto rounded-2xl overflow-hidden shadow-xl"
+            className="relative h-96 md:min-h-[460px] overflow-hidden shadow-2xl border border-[#EAE6E1]"
           >
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2926.324765!2d140.7265!3d41.7707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5f9e469d1e20e9b1%3A0x11b2d7a2d4c3b1a0!2sA-GATE+HOTEL+%E5%87%BD%E9%A4%A8!5e0!3m2!1sen!2sjp!4v1700000000000"
@@ -99,32 +118,34 @@ export default function AccessPage() {
         </div>
       </section>
 
-      {/* Nearby Spots */}
-      <section className="py-16 px-6 bg-[#F0EDE8]">
+      {/* ── Nearby Spots ── */}
+      <section className="py-20 px-6 lg:px-8 bg-white border-t border-[#EAE6E1]">
         <div className="max-w-7xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="mb-10"
+            className="mb-12"
           >
-            <h2 className="text-3xl font-bold text-[#1B2A4A]">{t("access.nearby.title")}</h2>
+            <p className="overline">{lang === "en" ? "Surroundings" : "周辺案内"}</p>
+            <h2 className="font-serif-display text-3xl md:text-4xl text-[#1B2A4A]">{t("access.nearby.title")}</h2>
           </motion.div>
+
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {nearbySpots.map((spot, i) => (
               <motion.div
                 key={spot.en}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: i * 0.08, duration: 0.5 }}
-                className="bg-white rounded-xl p-5 flex items-center gap-3 shadow-sm"
+                transition={{ delay: i * 0.06, duration: 0.5 }}
+                className="bg-[#F9F7F4] border border-[#EAE6E1] p-5 flex items-center gap-4 card-hover"
               >
                 <span className="text-2xl">{spot.icon}</span>
                 <div>
                   <p className="font-semibold text-sm text-[#1B2A4A]">{lang === "en" ? spot.en : spot.jp}</p>
-                  <p className="text-xs text-[#D4973B] font-medium">{lang === "en" ? spot.distEn : spot.distJp}</p>
+                  <p className="text-xs text-[#C9924A] font-medium mt-0.5">{lang === "en" ? spot.distEn : spot.distJp}</p>
                 </div>
               </motion.div>
             ))}
