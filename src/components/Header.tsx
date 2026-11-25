@@ -51,9 +51,7 @@ export default function Header() {
               alt="A-Gate Hotel Hakodate"
               width={140}
               height={48}
-              className={`object-contain transition-all duration-300 ${
-                transparent ? "brightness-0 invert" : "brightness-0"
-              }`}
+              className="object-contain"
               priority
             />
           </Link>
