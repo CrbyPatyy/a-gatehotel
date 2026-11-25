@@ -89,16 +89,15 @@ export default function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`relative px-3 py-2 text-[13px] font-medium tracking-wide transition-colors ${
+                  className={`relative px-2.5 lg:px-3 py-2 text-[12px] lg:text-[13px] font-medium tracking-wide transition-colors ${
                     transparent
                       ? "text-white hover:text-amber-300"
                       : "text-[#2D2D2D] hover:text-[#C9924A]"
                   } ${active ? (transparent ? "text-amber-300" : "text-[#C9924A]") : ""}`}
                 >
                   {lang === "en" ? link.keyEn : link.keyJp}
-                  {/* Amber underline for active */}
                   {active && (
-                    <span className="absolute bottom-0 left-3 right-3 h-[2px] bg-[#C9924A] rounded-full" />
+                    <span className="absolute bottom-0 left-2.5 right-2.5 h-[2px] bg-[#C9924A] rounded-full" />
                   )}
                 </Link>
               );

@@ -65,39 +65,24 @@ export default function PlanPage() {
   return (
     <>
       {/* ── Page hero ── */}
-      <section className="pt-24 pb-20 bg-[#0F1C33] relative overflow-hidden">
+      <section className="pt-20 sm:pt-24 pb-14 sm:pb-20 bg-[#0F1C33] relative overflow-hidden">
         <div className="absolute inset-0 opacity-10 bg-[url('/img/featuren04.jpg')] bg-cover bg-center" />
-        <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="eyebrow justify-center text-[#C9924A]/80 mb-5"
-          >
+        <div className="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <motion.p initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="eyebrow justify-center text-[#C9924A]/80 mb-4 sm:mb-5">
             {lang === "en" ? "Pricing & Plans" : "ご宿泊プラン"}
           </motion.p>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.7 }}
-            className="serif-display text-5xl md:text-6xl text-white mb-5"
-          >
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.7 }} className="serif-display text-4xl sm:text-5xl md:text-6xl text-white mb-4 sm:mb-5">
             {t("plan.title")}
           </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="text-white/50 text-lg max-w-xl mx-auto"
-          >
+          <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4, duration: 0.6 }} className="text-white/50 text-base sm:text-lg max-w-xl mx-auto">
             {t("plan.sub")}
           </motion.p>
         </div>
       </section>
 
       {/* ── Plans grid ── */}
-      <section className="py-24 px-6 lg:px-8 bg-[#F9F7F4]">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+      <section className="py-14 sm:py-24 px-4 sm:px-6 lg:px-8 bg-[#F9F7F4]">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {plans.map((plan, i) => (
             <motion.div
               key={plan.id}
@@ -105,70 +90,55 @@ export default function PlanPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
-              className={`relative flex flex-col p-8 md:p-10 ${
+              className={`relative flex flex-col p-6 sm:p-8 md:p-10 ${
                 plan.featured
                   ? "bg-[#1B2A4A] text-white shadow-2xl"
                   : "bg-white text-[#1A1A1A] shadow-sm border border-[#EAE6E1]"
               }`}
             >
-              {/* Featured corner badge */}
               {plan.featured && (
                 <div className="absolute top-0 right-0 bg-[#C9924A] text-white text-[9px] font-bold tracking-[0.15em] uppercase px-4 py-1.5">
                   {t(plan.badgeKey)}
                 </div>
               )}
-
-              {/* Badge for others */}
               {!plan.featured && (
                 <span className="inline-block text-[10px] font-bold tracking-[0.15em] uppercase text-[#C9924A] border border-[#C9924A]/40 px-3 py-1 w-fit mb-4">
                   {t(plan.badgeKey)}
                 </span>
               )}
-
-              <h2 className={`serif-display text-2xl md:text-3xl mb-2 mt-${plan.featured ? "6" : "2"} ${plan.featured ? "text-white" : "text-[#1B2A4A]"}`}>
+              <h2 className={`serif-display text-2xl sm:text-3xl mb-2 mt-${plan.featured ? "6" : "2"} ${plan.featured ? "text-white" : "text-[#1B2A4A]"}`}>
                 {t(plan.nameKey)}
               </h2>
-              <p className={`text-sm leading-relaxed mb-6 ${plan.featured ? "text-white/60" : "text-[#6B6B6B]"}`}>
+              <p className={`text-sm leading-relaxed mb-5 sm:mb-6 ${plan.featured ? "text-white/60" : "text-[#6B6B6B]"}`}>
                 {t(plan.descKey)}
               </p>
-
-              {/* Price inquiry block */}
-              <div className={`mb-8 py-5 border-y ${plan.featured ? "border-white/10" : "border-[#EAE6E1]"}`}>
+              <div className={`mb-6 sm:mb-8 py-4 sm:py-5 border-y ${plan.featured ? "border-white/10" : "border-[#EAE6E1]"}`}>
                 <p className={`text-[10px] uppercase tracking-[0.18em] mb-1 ${plan.featured ? "text-white/40" : "text-[#6B6B6B]"}`}>
                   {lang === "en" ? "Rate" : "料金"}
                 </p>
-                <p className={`text-lg font-semibold ${plan.featured ? "text-[#C9924A]" : "text-[#1B2A4A]"}`}>
+                <p className={`text-base sm:text-lg font-semibold ${plan.featured ? "text-[#C9924A]" : "text-[#1B2A4A]"}`}>
                   {lang === "en" ? "Inquire for rates" : "要問合せ"}
                 </p>
                 <p className={`text-xs mt-0.5 ${plan.featured ? "text-white/35" : "text-[#6B6B6B]"}`}>
                   {lang === "en" ? "Best rate guaranteed on official site" : "公式サイト最安値保証"}
                 </p>
               </div>
-
-              {/* Includes */}
-              <ul className="flex flex-col gap-3 mb-8 flex-1">
+              <ul className="flex flex-col gap-2 sm:gap-3 mb-6 sm:mb-8 flex-1">
                 {plan.includes.map((item) => {
                   const [en, jp] = item.split("|");
                   const label = lang === "en" ? en.replace("en:", "") : jp.replace("jp:", "");
                   return (
                     <li key={item} className="flex items-start gap-3">
-                      <Check
-                        size={14}
-                        className={`mt-0.5 shrink-0 ${plan.featured ? "text-[#C9924A]" : "text-[#C9924A]"}`}
-                      />
+                      <Check size={14} className="mt-0.5 shrink-0 text-[#C9924A]" />
                       <span className={`text-sm ${plan.featured ? "text-white/75" : "text-[#1A1A1A]"}`}>{label}</span>
                     </li>
                   );
                 })}
               </ul>
-
-              {/* CTA */}
               <Link
                 href="/reservation"
-                className={`flex items-center justify-center gap-2 py-3.5 text-[11px] font-bold tracking-[0.12em] uppercase transition-colors ${
-                  plan.featured
-                    ? "bg-[#C9924A] text-white hover:bg-[#B87E38]"
-                    : "bg-[#1B2A4A] text-white hover:bg-[#243660]"
+                className={`flex items-center justify-center gap-2 py-3 sm:py-3.5 text-[11px] font-bold tracking-[0.12em] uppercase transition-colors ${
+                  plan.featured ? "bg-[#C9924A] text-white hover:bg-[#B87E38]" : "bg-[#1B2A4A] text-white hover:bg-[#243660]"
                 }`}
               >
                 {t("plan.cta")} <ArrowRight size={13} />
@@ -179,15 +149,12 @@ export default function PlanPage() {
       </section>
 
       {/* ── Guarantee Banner ── */}
-      <section className="pb-24 px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto bg-[#1B2A4A] text-white p-10 md:p-12 text-center">
-          <div className="text-4xl mb-4">🏆</div>
-          <h3 className="serif-display text-2xl md:text-3xl text-white mb-3">{t("res.guarantee")}</h3>
-          <p className="text-white/60 max-w-lg mx-auto mb-7">{t("plan.guarantee")}</p>
-          <Link
-            href="/reservation"
-            className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.12em] uppercase px-7 py-3.5 bg-[#C9924A] text-white hover:bg-[#B87E38] transition-colors"
-          >
+      <section className="pb-14 sm:pb-24 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto bg-[#1B2A4A] text-white p-8 sm:p-10 md:p-12 text-center">
+          <div className="text-3xl sm:text-4xl mb-3 sm:mb-4">🏆</div>
+          <h3 className="serif-display text-2xl sm:text-3xl text-white mb-2 sm:mb-3">{t("res.guarantee")}</h3>
+          <p className="text-white/60 max-w-lg mx-auto mb-5 sm:mb-7 text-sm sm:text-base">{t("plan.guarantee")}</p>
+          <Link href="/reservation" className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.12em] uppercase px-7 py-3.5 bg-[#C9924A] text-white hover:bg-[#B87E38] transition-colors">
             {lang === "en" ? "Book Direct" : "公式予約はこちら"} <ExternalLink size={13} />
           </Link>
         </div>

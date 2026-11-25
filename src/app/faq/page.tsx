@@ -73,24 +73,23 @@ export default function FAQPage() {
   return (
     <>
       {/* ── Hero ── */}
-      <section className="pt-24 pb-20 bg-[#F9F7F4] border-b border-[#EAE6E1]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+      <section className="pt-20 sm:pt-24 pb-14 sm:pb-20 bg-[#F9F7F4] border-b border-[#EAE6E1]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="eyebrow">{lang === "en" ? "Support" : "よくあるご質問"}</p>
-          <h1 className="serif-display text-5xl md:text-6xl text-[#1B2A4A] mb-5">{t("faq.title")}</h1>
-          <p className="text-[#6B6B6B] text-lg max-w-xl">{t("faq.sub")}</p>
+          <h1 className="serif-display text-4xl sm:text-5xl md:text-6xl text-[#1B2A4A] mb-4 sm:mb-5">{t("faq.title")}</h1>
+          <p className="text-[#6B6B6B] text-base sm:text-lg max-w-xl">{t("faq.sub")}</p>
         </div>
       </section>
 
-      <section className="py-20 px-6 lg:px-8">
+      <section className="py-14 sm:py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
-
-          {/* Category tabs */}
-          <div className="flex flex-wrap gap-2 mb-12">
+          {/* Category tabs — scrollable on mobile */}
+          <div className="flex gap-2 mb-8 sm:mb-12 overflow-x-auto pb-2 sm:pb-0 sm:flex-wrap">
             {categories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`flex items-center gap-2 px-5 py-2.5 text-sm font-medium transition-all border ${
+                className={`flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium transition-all border whitespace-nowrap shrink-0 ${
                   activeCategory === cat.id
                     ? "bg-[#1B2A4A] text-white border-[#1B2A4A]"
                     : "bg-white text-[#1B2A4A] border-[#EAE6E1] hover:border-[#1B2A4A]"
@@ -110,7 +109,7 @@ export default function FAQPage() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
               transition={{ duration: 0.25 }}
-              className="bg-white border border-[#EAE6E1] divide-y-0 px-6 md:px-10 py-2"
+              className="bg-white border border-[#EAE6E1] divide-y-0 px-4 sm:px-6 md:px-10 py-2"
             >
               {faqs[activeCategory]?.map((item, i) => (
                 <AccordionItem key={i} q={item.q} a={item.a} lang={lang as LangKey} />
@@ -119,12 +118,9 @@ export default function FAQPage() {
           </AnimatePresence>
 
           {/* Contact CTA */}
-          <div className="mt-14 p-8 bg-[#F9F7F4] border border-[#EAE6E1] text-center">
+          <div className="mt-10 sm:mt-14 p-6 sm:p-8 bg-[#F9F7F4] border border-[#EAE6E1] text-center">
             <p className="text-[#6B6B6B] mb-3 text-sm">{t("faq.contact")}</p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.12em] uppercase px-6 py-3 bg-[#1B2A4A] text-white hover:bg-[#C9924A] transition-colors"
-            >
+            <Link href="/contact" className="inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.12em] uppercase px-6 py-3 bg-[#1B2A4A] text-white hover:bg-[#C9924A] transition-colors">
               {t("faq.contact.link")}
             </Link>
           </div>
